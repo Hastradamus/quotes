@@ -1,7 +1,7 @@
 <?php
 echo "<p>  <a href=\"main.php\">home</a>
     <a href=\"main.php\">next</a>
-    <a href=\"admin_home.php\">admin</a> 
+    <a href=\"admin_home.php\">admin-home</a> 
     </p>";
 
 echo "<form action='admin_quote_submit.php' method='post'>
