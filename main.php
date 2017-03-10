@@ -23,22 +23,24 @@ echo "<p>  <a href=\"main.php\">home</a>
         $next = $_GET['next'] + 1;
     }
 
-
       $i = 0;
       do{
-          /*
-          if($i >= $num_cats){
-              $next = 1;
+          if($i >= $num_cats - 1){
+              $next = 0;
               $i = 0;
               //$taco = mysql_data_seek($result, 1);
           }
-           */
           $quotes_rows = mysql_fetch_row($result);
           $i = $i + 1;
       } while($i < $next);
-      echo "<p>\"$quotes_rows[0]\"";
-      echo "<br>";
-      echo "-$quotes_rows[1]";
+      if($num_cats <= 0){
+          echo "<p> There are no quotes. Click on 'admin' to add some";
+      }
+      else{
+          echo "<p>\"$quotes_rows[0]\"";
+          echo "<br>";
+          echo "-$quotes_rows[1]";
+      }
     }
   }
   mysql_close($con);
