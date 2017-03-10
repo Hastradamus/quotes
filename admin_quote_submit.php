@@ -8,7 +8,8 @@ echo "<p>  <a href=\"main.php\">home</a>
 $quote_text = $_POST['quote_text'];
 $quote_author = $_POST['origin'];
 $date = date("m-d-y h:i:s", time());
-echo "<p> $id";
+$old_id = $_POST['old_id'];
+
   $con = mysql_connect('silo.soic.indiana.edu:32904', 'whoever', 'wha55up');
                           // host                port     username   password 
   if ($con){ 
@@ -19,8 +20,13 @@ echo "<p> $id";
         $instancesofid = mysql_num_rows(mysql_query("select * from quotes where id = $id", $con)); //make sure the id isn't taken
     } while($instancesofid > 0);
          //if the id isn't taken enter everything
-            $query = "insert into quotes values(\"$quote_text\", \"$quote_author\", \"$date\", $id)";
-
+    if($old_id != ""){
+        $suc = mysql_query("delete from quotes where id = $old_id");
+        if(!$suc){
+            echo "<p> Error in query";
+        }
+    }
+    $query = "insert into quotes values(\"$quote_text\", \"$quote_author\", \"$date\", $id)"; 
       $result = mysql_query($query, $con);
       if(!$result)
           die('error entering data' . mysql_error());

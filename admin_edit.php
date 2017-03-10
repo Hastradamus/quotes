@@ -15,12 +15,14 @@ if($suc){
 }
 else
     echo "Error completing request";
+
 mysql_close($con);
 
 echo "<form action='admin_quote_submit.php' method='post'>
     Quote Text: <input type='text' value='". $row[0] ."' name=quote_text /> <br/>
     Quote Originator: <input type='text' value='". $row[1] ."' name='origin'/> <br/>
     <input type='submit' name='submit' value='submit' />
+    <input type='hidden' name='old_id' value=$id>
     </form>";
     //<!-- <input type='hidden' name='redirect' value='admin_com_screen.php' > -->
 ?>
